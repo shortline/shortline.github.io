@@ -127,10 +127,6 @@
     var ribRect = ribbon.getBoundingClientRect();
     var left = (window.innerWidth - ribRect.width)/2;
     ribbon.style.left = (left >= 10 ? left : 10 )+'px'
-    
-    //document.getElementById("inFrame").style.height = (window.innerHeight - document.getElementById("headerBackground").getBoundingClientRect().bottom);
-    
-    //document.getElementById("inFrame").style.width = (window.innerWidth - document.getElementById("leftMenu").getBoundingClientRect().right);
   }
   
   onload = function(){
@@ -143,40 +139,6 @@
       els[i].style.left = 0; //window.innerWidth
     }
   }
-  
-  var speed = .220;
-  moveDivs = function(){
-    var els = document.querySelectorAll('.scroll');
-    
-    start = new Date().getTime();
-        console.log(stop - start)
-    var i = els.length;
-    while(i > 0){
-      i--;
-      var style = els[i].getBoundingClientRect()
-      if (style.left <= (window.innerWidth - style.width) && els[i].dataset.done == 0) {
-        newEl = els[i].cloneNode(true);
-        newEl.style.left = (Math.floor(style.right) - 5) + 'px'
-        els[i].parentNode.appendChild(newEl);
-        els[i].dataset.done = 1;
-      }
-      if (style.right < 0) {
-        els[i].parentNode.removeChild(els[i]);
-      }
-      else{
-        els[i].dataset.start = new Date().getTime();
-        time = els[i].dataset.start - (els[i].dataset.stop == undefined ? els[i].dataset.start : els[i].dataset.start);
-        els[i].dataset.stop = els[i].dataset.start;
-        els[i].style.bottom = (window.innerHeight - ((window.innerHeight) * (1-(.75*els[i].dataset.distance)))) + 'px';
-        var nLeft = (style.left + ((stop - start) * speed * (1-els[i].dataset.distance)))
-        els[i].style.left = nLeft + 'px';
-      }
-    }
-    stop = new Date().getTime();
-    //requestAnimationFrame(moveDivs);
-  }
-  //requestAnimationFrame(moveDivs);
-  //setInterval(moveDivs,20);
 </script>
 
 <body>
@@ -193,7 +155,10 @@
         </div>
       </div>
     </div>
-    <div id='clickit' onclick = "window.location = 'http://98.165.216.50:33033/shortline/main.php'">
+    <div id='clickit'
+      onclick = "window.location = 'http://98.165.216.50:33033/shortline/main.php'"
+      on
+    >
       - Click To Play -
     </div>
       
